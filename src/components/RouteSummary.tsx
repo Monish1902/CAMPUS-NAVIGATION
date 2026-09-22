@@ -31,11 +31,43 @@ export const RouteSummary: React.FC<RouteSummaryProps> = ({
   onStopSimulation,
   simulationProgress = 0,
 }) => {
-  const [isExpanded, setIsExpanded] = useState(false); // Collapsed by default on small viewports so map is prominent
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(false);
 
   const caloriesBurned = Math.round(route.totalDistance * 0.05);
-  const fromBadge = getTypeBadgeColor(route.fromNode.type);
-  const toBadge = getTypeBadgeColor(route.toNode.type);
+
+  if (isMinimized) {
+    return (
+      <div className="bg-white/95 backdrop-blur-md border border-slate-200/90 rounded-2xl shadow-xl p-2.5 flex items-center justify-between gap-3 max-w-xs w-full animate-in fade-in">
+        <button
+          type="button"
+          onClick={() => setIsMinimized(false)}
+          className="flex items-center gap-2 text-left flex-1 min-w-0 cursor-pointer"
+        >
+          <div className="w-7 h-7 rounded-xl bg-blue-600 text-white flex items-center justify-center shrink-0">
+            <Navigation className="w-3.5 h-3.5 fill-current" />
+          </div>
+          <div className="truncate">
+            <div className="text-xs font-bold text-slate-900 truncate">
+              {route.totalDistance}m • ~{route.estimatedMinutes} min
+            </div>
+            <div className="text-[10px] text-blue-600 font-semibold truncate">
+              Tap to expand route details
+            </div>
+          </div>
+        </button>
+
+        <button
+          type="button"
+          onClick={onClearRoute}
+          className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer"
+          title="Clear Route"
+        >
+          <X className="w-4 h-4" />
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-white/95 backdrop-blur-md border border-slate-200/90 rounded-2xl shadow-2xl overflow-hidden transition-all max-w-sm w-full">
@@ -60,11 +92,11 @@ export const RouteSummary: React.FC<RouteSummaryProps> = ({
         <div className="flex items-center gap-1 shrink-0">
           <button
             type="button"
-            onClick={() => setIsExpanded(!isExpanded)}
+            onClick={() => setIsMinimized(true)}
             className="p-1 hover:bg-white/15 rounded-lg transition-colors text-white"
-            title={isExpanded ? 'Collapse Directions' : 'View Turn-by-Turn Steps'}
+            title="Minimize Route Card"
           >
-            {isExpanded ? <ChevronDown className="w-4 h-4" /> : <ChevronUp className="w-4 h-4" />}
+            <ChevronDown className="w-4 h-4" />
           </button>
           <button
             type="button"

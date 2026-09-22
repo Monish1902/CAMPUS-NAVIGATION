@@ -133,28 +133,47 @@ function generateSatelliteSvg(c: Record<string, string>): string {
     <ellipse cx="550" cy="760" rx="160" ry="125" fill="none" stroke="${c.satRoad}" stroke-width="14"/>
     <ellipse cx="550" cy="760" rx="160" ry="125" fill="none" stroke="${c.satRoadBorder}" stroke-width="1"/>
 
-    <!-- East Ring Road connecting Central Library, Civil/EEE, Canteen, and Data Engineering -->
-    <path d="M465,530 C580,530 680,540 730,500 L730,220 C750,200 820,190 920,190"
-          fill="none" stroke="${c.satRoad}" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- West Academic Road (Runs directly alongside linearly aligned CSE, ECE, Mech) -->
+    <!-- svg: from Admin (445, 470) past CSE (445, 390), ECE (445, 240) to Mech (445, 90) -->
+    <path d="M445,490 L445,90" fill="none" stroke="${c.satRoad}" stroke-width="12" stroke-linecap="round"/>
+    <path d="M445,490 L445,90" fill="none" stroke="${c.satRoadBorder}" stroke-width="1" stroke-dasharray="8 6"/>
+
+    <!-- Direct Road Entrances Penetrating Through Building Entrance Wings -->
+    <!-- Through CSE Block -->
+    <path d="M445,390 L340,390" fill="none" stroke="${c.satRoad}" stroke-width="9" stroke-linecap="round"/>
+    <!-- Through ECE Block -->
+    <path d="M445,240 L340,240" fill="none" stroke="${c.satRoad}" stroke-width="9" stroke-linecap="round"/>
+    <!-- Through Mechanical Dept -->
+    <path d="M445,90 L340,90" fill="none" stroke="${c.satRoad}" stroke-width="9" stroke-linecap="round"/>
+    <!-- Into Workshop -->
+    <path d="M470,90 L470,125" fill="none" stroke="${c.satRoad}" stroke-width="8" stroke-linecap="round"/>
 
     <!-- North Road connecting Mech, Workshop, and Data Engineering -->
-    <path d="M340,90 L520,90 L760,110 L875,175"
-          fill="none" stroke="${c.satRoad}" stroke-width="10" stroke-linecap="round"/>
+    <path d="M445,90 L550,90 L710,140 L780,175 L865,175"
+          fill="none" stroke="${c.satRoad}" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
 
-    <!-- Central Walkway Corridors between Admin, CSE, ECE, and Mech -->
-    <path d="M455,530 L455,360 L430,240 L340,110"
-          fill="none" stroke="${c.satWalkway}" stroke-width="8" stroke-linecap="round"/>
+    <!-- East Ring Road connecting Central Library, Civil/EEE, Canteen, and Data Engineering -->
+    <path d="M600,490 L700,470 L700,345 L710,260 L780,175"
+          fill="none" stroke="${c.satRoad}" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M700,470 L690,620 L770,620"
+          fill="none" stroke="${c.satRoad}" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
 
-    <!-- Cross Corridor to IT and Chemistry Lab -->
-    <path d="M455,490 L605,435 L650,330"
-          fill="none" stroke="${c.satWalkway}" stroke-width="8" stroke-linecap="round"/>
+    <!-- Direct Building Spurs on East Side -->
+    <!-- Into Civil, EEE, Chem -->
+    <path d="M700,470 L805,470" fill="none" stroke="${c.satRoad}" stroke-width="8" stroke-linecap="round"/>
+    <!-- Into IT Dept -->
+    <path d="M700,470 L600,435" fill="none" stroke="${c.satRoad}" stroke-width="8" stroke-linecap="round"/>
+    <!-- Into Chemistry Lab -->
+    <path d="M700,345 L610,320" fill="none" stroke="${c.satRoad}" stroke-width="8" stroke-linecap="round"/>
+    <!-- Into Canteen -->
+    <path d="M700,345 L790,345" fill="none" stroke="${c.satRoad}" stroke-width="8" stroke-linecap="round"/>
 
     <!-- Authentic Blue Traced Walking Trail (along West curve of Cricket Ground) -->
     <!-- Traced along the blue dots from the reference images -->
     <path d="M455,880 Q430,830 390,780 Q360,730 355,670 Q370,610 395,560 Q435,525 455,490"
           fill="none" stroke="${c.blueTrail}" stroke-width="4.5" stroke-dasharray="6 4" stroke-linecap="round"/>
 
-    <!-- 3. SPORTS GROUNDS & POND -->
+    <!-- 3. SPORTS GROUNDS -->
     <!-- A. Cricket Ground Oval (Center: 550, 760) -->
     <g id="sat-cricket-ground">
       <!-- Dirt running track ring -->
@@ -174,26 +193,8 @@ function generateSatelliteSvg(c: Record<string, string>): string {
       <circle cx="345" cy="530" r="6" fill="none" stroke="#d8f3dc" stroke-width="1"/>
     </g>
 
-    <!-- C. Pond / పాండ్ (730, 920) -->
-    <g id="sat-pond" filter="url(#bldgShadow)">
-      <path d="M670,880 C720,860 800,870 810,915 C820,955 765,980 705,975 C660,965 645,910 670,880 Z"
-            fill="url(#satPondGrad)" stroke="#112d3b" stroke-width="2.5"/>
-      <!-- Water ripples -->
-      <path d="M700,900 C730,895 760,900 780,915" stroke="#7dd3fc" stroke-width="1.5" fill="none" opacity="0.6"/>
-      <path d="M685,930 C715,925 750,930 770,945" stroke="#7dd3fc" stroke-width="1.5" fill="none" opacity="0.6"/>
-    </g>
-
     <!-- 4. SATELLITE TREE CANOPIES (CLUSTERS MATCHING SATELLITE IMAGE) -->
     <g id="sat-trees" opacity="0.9">
-      <!-- Pond perimeter trees -->
-      <circle cx="660" cy="875" r="11" fill="${c.satTreeDark}"/>
-      <circle cx="685" cy="860" r="9" fill="${c.satTreeMid}"/>
-      <circle cx="780" cy="865" r="12" fill="${c.satTreeDark}"/>
-      <circle cx="815" cy="900" r="13" fill="${c.satTreeLight}"/>
-      <circle cx="800" cy="955" r="12" fill="${c.satTreeDark}"/>
-      <circle cx="750" cy="980" r="10" fill="${c.satTreeMid}"/>
-      <circle cx="685" cy="970" r="11" fill="${c.satTreeDark}"/>
-
       <!-- Cricket Oval perimeter trees -->
       <circle cx="410" cy="740" r="10" fill="${c.satTreeMid}"/>
       <circle cx="395" cy="700" r="11" fill="${c.satTreeDark}"/>
@@ -212,8 +213,8 @@ function generateSatelliteSvg(c: Record<string, string>): string {
       <circle cx="510" cy="540" r="11" fill="${c.satTreeDark}"/>
 
       <!-- Quadrangle and inter-building tree groves -->
-      <circle cx="330" cy="640" r="12" fill="${c.satTreeDark}"/>
-      <circle cx="320" cy="590" r="11" fill="${c.satTreeMid}"/>
+      <circle cx="240" cy="640" r="12" fill="${c.satTreeDark}"/>
+      <circle cx="230" cy="590" r="11" fill="${c.satTreeMid}"/>
       <circle cx="485" cy="650" r="13" fill="${c.satTreeLight}"/>
       <circle cx="510" cy="700" r="12" fill="${c.satTreeDark}"/>
       <circle cx="670" cy="590" r="13" fill="${c.satTreeMid}"/>
@@ -227,17 +228,17 @@ function generateSatelliteSvg(c: Record<string, string>): string {
     <!-- 5. BUILDINGS TRACED DIRECTLY FROM GOOGLE SATELLITE IMAGE -->
 
     <!-- A. NEW BLOCK: DATA ENGINEERING BLOCK (Top-Right / North-East) -->
-    <!-- campus: [800, 780] to [955, 875] -> svg: [800, 125] to [955, 220] -->
+    <!-- campus: [790, 780] to [945, 875] -> svg: [790, 125] to [945, 220] -->
     <g id="bldg-data-engineering" filter="url(#bldgShadow)">
-      <rect x="800" y="125" width="155" height="95" fill="url(#concretePattern)" stroke="#8c7a65" stroke-width="2" rx="3"/>
+      <rect x="790" y="125" width="155" height="95" fill="url(#concretePattern)" stroke="#8c7a65" stroke-width="2" rx="3"/>
       <!-- Inner Courtyard -->
-      <rect x="850" y="155" width="45" height="35" fill="${c.satTreeDark}" stroke="#8c7a65" stroke-width="1"/>
+      <rect x="840" y="155" width="45" height="35" fill="${c.satTreeDark}" stroke="#8c7a65" stroke-width="1"/>
       <!-- Rooftop Solar Panel Arrays -->
-      <rect x="815" y="132" width="125" height="15" fill="url(#satSolarPattern)"/>
-      <rect x="815" y="198" width="125" height="15" fill="url(#satSolarPattern)"/>
+      <rect x="805" y="132" width="125" height="15" fill="url(#satSolarPattern)"/>
+      <rect x="805" y="198" width="125" height="15" fill="url(#satSolarPattern)"/>
     </g>
 
-    <!-- B. MECHANICAL DEPARTMENT (Top-Center) -->
+    <!-- B. MECHANICAL DEPARTMENT (Linearly aligned with ECE and CSE along x: 275-405, center x: 340) -->
     <!-- campus: [275, 860] to [405, 960] -> svg: [275, 40] to [405, 140] -->
     <g id="bldg-mech" filter="url(#bldgShadow)">
       <rect x="275" y="40" width="130" height="100" fill="url(#concretePattern)" stroke="#8c7a65" stroke-width="2" rx="3"/>
@@ -254,26 +255,26 @@ function generateSatelliteSvg(c: Record<string, string>): string {
       <rect x="420" y="153" width="95" height="14" fill="url(#satSolarPattern)"/>
     </g>
 
-    <!-- D. ECE DEPARTMENT -->
-    <!-- campus: [375, 710] to [485, 810] -> svg: [375, 190] to [485, 290] -->
+    <!-- D. ECE DEPARTMENT (Linearly aligned with Mechanical and CSE along x: 275-405, center x: 340) -->
+    <!-- campus: [275, 710] to [405, 810] -> svg: [275, 190] to [405, 290] -->
     <g id="bldg-ece" filter="url(#bldgShadow)">
-      <rect x="375" y="190" width="110" height="100" fill="url(#concretePattern)" stroke="#8c7a65" stroke-width="2" rx="3"/>
+      <rect x="275" y="190" width="130" height="100" fill="url(#concretePattern)" stroke="#8c7a65" stroke-width="2" rx="3"/>
       <!-- Courtyard -->
-      <rect x="415" y="225" width="30" height="30" fill="${c.satTreeDark}" stroke="#786650" stroke-width="1"/>
+      <rect x="325" y="225" width="30" height="30" fill="${c.satTreeDark}" stroke="#786650" stroke-width="1"/>
       <!-- Solar Arrays -->
-      <rect x="385" y="200" width="85" height="16" fill="url(#satSolarPattern)"/>
-      <rect x="385" y="265" width="85" height="16" fill="url(#satSolarPattern)"/>
+      <rect x="285" y="200" width="110" height="16" fill="url(#satSolarPattern)"/>
+      <rect x="285" y="265" width="110" height="16" fill="url(#satSolarPattern)"/>
     </g>
 
-    <!-- E. CSE BLOCK (Central, South of ECE, North of Admin) -->
-    <!-- campus: [340, 590] to [450, 690] -> svg: [340, 310] to [450, 410] -->
+    <!-- E. CSE BLOCK (Central, linearly aligned with Mechanical and ECE along x: 275-405, center x: 340) -->
+    <!-- campus: [275, 560] to [405, 660] -> svg: [275, 340] to [405, 440] -->
     <g id="bldg-cse-central" filter="url(#bldgShadow)">
-      <rect x="340" y="310" width="110" height="100" fill="url(#concretePattern)" stroke="#8c7a65" stroke-width="2" rx="3"/>
+      <rect x="275" y="340" width="130" height="100" fill="url(#concretePattern)" stroke="#8c7a65" stroke-width="2" rx="3"/>
       <!-- Courtyard -->
-      <rect x="375" y="345" width="35" height="35" fill="${c.satTreeMid}" stroke="#786650" stroke-width="1"/>
+      <rect x="325" y="375" width="30" height="30" fill="${c.satTreeMid}" stroke="#786650" stroke-width="1"/>
       <!-- Solar Arrays -->
-      <rect x="350" y="320" width="85" height="15" fill="url(#satSolarPattern)"/>
-      <rect x="350" y="388" width="85" height="15" fill="url(#satSolarPattern)"/>
+      <rect x="285" y="350" width="110" height="15" fill="url(#satSolarPattern)"/>
+      <rect x="285" y="415" width="110" height="15" fill="url(#satSolarPattern)"/>
     </g>
 
     <!-- F. CSE BLOCK (West Wing, Northwest Edge) -->
@@ -283,21 +284,21 @@ function generateSatelliteSvg(c: Record<string, string>): string {
     </g>
 
     <!-- G. CHEMISTRY LABORATORY -->
-    <!-- campus: [580, 640] to [720, 700] -> svg: [580, 300] to [720, 360] -->
+    <!-- campus: [550, 645] to [670, 715] -> svg: [550, 285] to [670, 355] -->
     <g id="bldg-chemistry" filter="url(#bldgShadow)">
-      <rect x="580" y="300" width="140" height="60" fill="url(#concretePattern)" stroke="#8c7a65" stroke-width="2" rx="3"/>
-      <rect x="595" y="315" width="105" height="15" fill="url(#satSolarPattern)"/>
+      <rect x="550" y="285" width="120" height="70" fill="url(#concretePattern)" stroke="#8c7a65" stroke-width="2" rx="3"/>
+      <rect x="565" y="300" width="90" height="15" fill="url(#satSolarPattern)"/>
     </g>
 
     <!-- H. IT DEPARTMENT -->
-    <!-- campus: [555, 515] to [655, 615] -> svg: [555, 385] to [655, 485] -->
+    <!-- campus: [550, 515] to [650, 615] -> svg: [550, 385] to [650, 485] -->
     <g id="bldg-it" filter="url(#bldgShadow)">
-      <rect x="555" y="385" width="100" height="100" fill="url(#concretePattern)" stroke="#8c7a65" stroke-width="2" rx="3"/>
+      <rect x="550" y="385" width="100" height="100" fill="url(#concretePattern)" stroke="#8c7a65" stroke-width="2" rx="3"/>
       <!-- Courtyard -->
-      <rect x="590" y="420" width="30" height="30" fill="${c.satTreeDark}" stroke="#786650" stroke-width="1"/>
+      <rect x="585" y="420" width="30" height="30" fill="${c.satTreeDark}" stroke="#786650" stroke-width="1"/>
       <!-- Solar Arrays -->
-      <rect x="565" y="395" width="75" height="15" fill="url(#satSolarPattern)"/>
-      <rect x="565" y="460" width="75" height="15" fill="url(#satSolarPattern)"/>
+      <rect x="560" y="395" width="75" height="15" fill="url(#satSolarPattern)"/>
+      <rect x="560" y="455" width="75" height="15" fill="url(#satSolarPattern)"/>
     </g>
 
     <!-- I. ADMIN BLOCK (Central Flagship) -->
@@ -310,29 +311,29 @@ function generateSatelliteSvg(c: Record<string, string>): string {
     </g>
 
     <!-- J. CANTEEN (Terracotta Roof North of Civil Block) -->
-    <!-- campus: [750, 610] to [830, 665] -> svg: [750, 335] to [830, 390] -->
+    <!-- campus: [750, 625] to [835, 690] -> svg: [750, 310] to [835, 375] -->
     <g id="bldg-canteen" filter="url(#bldgShadow)">
-      <rect x="750" y="335" width="80" height="55" fill="${c.satRoofTerracotta}" stroke="#6e2d1d" stroke-width="2" rx="3"/>
-      <rect x="760" y="345" width="60" height="12" fill="#c2573f" rx="1"/>
+      <rect x="750" y="310" width="85" height="65" fill="${c.satRoofTerracotta}" stroke="#6e2d1d" stroke-width="2" rx="3"/>
+      <rect x="760" y="325" width="65" height="15" fill="#c2573f" rx="1"/>
     </g>
 
     <!-- K. CIVIL, EEE, CHEM ENGINEERING BLOCK -->
-    <!-- campus: [720, 460] to [840, 570] -> svg: [720, 430] to [840, 540] -->
+    <!-- campus: [750, 475] to [860, 585] -> svg: [750, 415] to [860, 525] -->
     <g id="bldg-civil-eee-chem" filter="url(#bldgShadow)">
-      <rect x="720" y="430" width="120" height="110" fill="url(#concretePattern)" stroke="#8c7a65" stroke-width="2.5" rx="3"/>
+      <rect x="750" y="415" width="110" height="110" fill="url(#concretePattern)" stroke="#8c7a65" stroke-width="2.5" rx="3"/>
       <!-- Courtyard -->
-      <rect x="760" y="465" width="35" height="35" fill="${c.satTreeMid}" stroke="#786650" stroke-width="1"/>
+      <rect x="790" y="450" width="35" height="35" fill="${c.satTreeMid}" stroke="#786650" stroke-width="1"/>
       <!-- Solar Arrays -->
-      <rect x="735" y="440" width="85" height="16" fill="url(#satSolarPattern)"/>
-      <rect x="735" y="512" width="85" height="16" fill="url(#satSolarPattern)"/>
+      <rect x="765" y="430" width="80" height="15" fill="url(#satSolarPattern)"/>
+      <rect x="765" y="495" width="80" height="15" fill="url(#satSolarPattern)"/>
     </g>
 
     <!-- L. CENTRAL LIBRARY (CENTRAL LIBRAY) - Crescent curved building -->
-    <!-- campus: [665, 340] to [755, 420] -> svg: [665, 580] to [755, 660] -->
+    <!-- campus: [720, 340] to [820, 420] -> svg: [720, 580] to [820, 660] -->
     <g id="bldg-central-library" filter="url(#bldgShadow)">
-      <path d="M665,580 C705,570 735,575 755,595 L755,660 C725,645 690,645 665,660 Z"
+      <path d="M720,580 C760,570 795,575 820,595 L820,660 C790,645 750,645 720,660 Z"
             fill="url(#concretePattern)" stroke="#8c7a65" stroke-width="2.5"/>
-      <rect x="680" y="600" width="60" height="16" fill="url(#satSolarPattern)"/>
+      <rect x="735" y="625" width="70" height="16" fill="url(#satSolarPattern)"/>
     </g>
 
     <!-- M. OPEN AIR AUDITORIUM -->
@@ -354,11 +355,11 @@ function generateSatelliteSvg(c: Record<string, string>): string {
     <!-- 6. HIGH-CONTRAST SATELLITE ANNOTATION LABELS (IDENTICAL TO USER'S MAP) -->
     <g id="sat-labels" font-family="system-ui, -apple-system, sans-serif" font-weight="800" text-anchor="middle" filter="url(#textGlow)">
       <!-- Data Enginnering block (Top-Right) -->
-      <g transform="translate(875, 115)">
+      <g transform="translate(865, 115)">
         <text x="0" y="0" fill="#ffffff" font-size="13" stroke="#000000" stroke-width="3" paint-order="stroke fill">Data Enginnering block</text>
       </g>
 
-      <!-- MECHANICAL Department Mech డిపార్ట్మెంట్ -->
+      <!-- MECHANICAL Department Mech డిపార్ట్మెంట్ (Aligned with ECE & CSE on x: 340) -->
       <g transform="translate(340, 32)">
         <text x="0" y="0" fill="#ffffff" font-size="13" stroke="#000000" stroke-width="3" paint-order="stroke fill">MECHANICAL</text>
         <text x="0" y="14" fill="#ffffff" font-size="12" stroke="#000000" stroke-width="3" paint-order="stroke fill">Department Mech</text>
@@ -366,18 +367,18 @@ function generateSatelliteSvg(c: Record<string, string>): string {
       </g>
 
       <!-- Workshop Labortary -->
-      <g transform="translate(565, 138)">
+      <g transform="translate(470, 105)">
         <text x="0" y="0" fill="#ffffff" font-size="12" stroke="#000000" stroke-width="3" paint-order="stroke fill">Workshop Labortary</text>
       </g>
 
-      <!-- ECE Department -->
-      <g transform="translate(420, 215)">
+      <!-- ECE Department (Aligned with Mech & CSE on x: 340) -->
+      <g transform="translate(340, 185)">
         <text x="0" y="0" fill="#ffffff" font-size="12" stroke="#000000" stroke-width="3" paint-order="stroke fill">ECE Department</text>
       </g>
 
-      <!-- CSE BLOCK (Central) -->
-      <g transform="translate(345, 395)">
-        <text x="0" y="0" fill="#ffffff" font-size="12" stroke="#000000" stroke-width="3" paint-order="stroke fill" transform="rotate(-90, 0, 0)">CSE BLOCK</text>
+      <!-- CSE BLOCK (Central, Aligned with Mech & ECE on x: 340) -->
+      <g transform="translate(340, 335)">
+        <text x="0" y="0" fill="#ffffff" font-size="12" stroke="#000000" stroke-width="3" paint-order="stroke fill">CSE BLOCK</text>
       </g>
 
       <!-- CSE BLOCK (Northwest) -->
@@ -386,12 +387,12 @@ function generateSatelliteSvg(c: Record<string, string>): string {
       </g>
 
       <!-- Chemistry Labortary -->
-      <g transform="translate(650, 340)">
+      <g transform="translate(610, 275)">
         <text x="0" y="0" fill="#ffffff" font-size="12" stroke="#000000" stroke-width="3" paint-order="stroke fill">Chemistry Labortary</text>
       </g>
 
       <!-- IT Department -->
-      <g transform="translate(605, 388)">
+      <g transform="translate(600, 380)">
         <text x="0" y="0" fill="#ffffff" font-size="12" stroke="#000000" stroke-width="3" paint-order="stroke fill">IT Department</text>
       </g>
 
@@ -401,19 +402,19 @@ function generateSatelliteSvg(c: Record<string, string>): string {
       </g>
 
       <!-- CANTEEN -->
-      <g transform="translate(822, 355)">
-        <text x="0" y="0" fill="#ffffff" font-size="12" stroke="#000000" stroke-width="3" paint-order="stroke fill" transform="rotate(90, 0, 0)">CANTEEN</text>
+      <g transform="translate(790, 305)">
+        <text x="0" y="0" fill="#ffffff" font-size="12" stroke="#000000" stroke-width="3" paint-order="stroke fill">CANTEEN</text>
       </g>
 
       <!-- CIVIL, EEE, CHEM Enginnering block -->
-      <g transform="translate(830, 515)">
-        <text x="0" y="0" fill="#ffffff" font-size="12" stroke="#000000" stroke-width="3" paint-order="stroke fill" transform="rotate(90, 0, 0)">CIVIL, EEE, CHEM</text>
-        <text x="0" y="14" fill="#ffffff" font-size="11" stroke="#000000" stroke-width="3" paint-order="stroke fill" transform="rotate(90, 0, 0)">Enginnering block</text>
+      <g transform="translate(805, 410)">
+        <text x="0" y="0" fill="#ffffff" font-size="12" stroke="#000000" stroke-width="3" paint-order="stroke fill">CIVIL, EEE, CHEM</text>
+        <text x="0" y="14" fill="#ffffff" font-size="11" stroke="#000000" stroke-width="3" paint-order="stroke fill">Enginnering block</text>
       </g>
 
       <!-- CENTRAL LIBRAY -->
-      <g transform="translate(705, 645)">
-        <text x="0" y="0" fill="#ffffff" font-size="12" stroke="#000000" stroke-width="3" paint-order="stroke fill" transform="rotate(90, 0, 0)">CENTRAL LIBRAY</text>
+      <g transform="translate(770, 570)">
+        <text x="0" y="0" fill="#ffffff" font-size="12" stroke="#000000" stroke-width="3" paint-order="stroke fill">CENTRAL LIBRAY</text>
       </g>
 
       <!-- MVGR.Engg College Main Gate -->
@@ -421,12 +422,6 @@ function generateSatelliteSvg(c: Record<string, string>): string {
         <text x="0" y="0" fill="#ffffff" font-size="13" stroke="#000000" stroke-width="3" paint-order="stroke fill">MVGR.Engg</text>
         <text x="0" y="16" fill="#ffffff" font-size="13" stroke="#000000" stroke-width="3" paint-order="stroke fill">College Main Gate</text>
         <text x="0" y="32" fill="#fef08a" font-size="12" stroke="#000000" stroke-width="2.5" paint-order="stroke fill">మెయిన్ గేట్</text>
-      </g>
-
-      <!-- Pond / పాండ్ -->
-      <g transform="translate(730, 915)">
-        <text x="0" y="0" fill="#ffffff" font-size="13" stroke="#000000" stroke-width="3" paint-order="stroke fill">Pond</text>
-        <text x="0" y="16" fill="#e0f2fe" font-size="12" stroke="#000000" stroke-width="2.5" paint-order="stroke fill">పాండ్</text>
       </g>
 
       <!-- Sri Sri Sri Umamaheswara... -->
@@ -497,9 +492,18 @@ function generateVectorSvg(c: {
     <path d="M445,950 L445,530 L465,530 L465,950 Z" fill="${c.vecRoad}"/>
     <ellipse cx="550" cy="760" rx="160" ry="125" fill="none" stroke="${c.vecRoad}" stroke-width="12"/>
 
-    <!-- Pond -->
-    <path d="M670,880 C720,860 800,870 810,915 C820,955 765,980 705,975 C660,965 645,910 670,880 Z"
-          fill="#38bdf8" stroke="#0284c7" stroke-width="2"/>
+    <!-- West Academic Road & spurs through buildings -->
+    <path d="M445,490 L445,90" fill="none" stroke="${c.vecRoad}" stroke-width="10"/>
+    <path d="M445,390 L340,390" fill="none" stroke="${c.vecRoad}" stroke-width="8"/>
+    <path d="M445,240 L340,240" fill="none" stroke="${c.vecRoad}" stroke-width="8"/>
+    <path d="M445,90 L340,90" fill="none" stroke="${c.vecRoad}" stroke-width="8"/>
+    <path d="M445,90 L550,90 L710,140 L780,175 L865,175" fill="none" stroke="${c.vecRoad}" stroke-width="9"/>
+    <path d="M600,490 L700,470 L700,345 L710,260 L780,175" fill="none" stroke="${c.vecRoad}" stroke-width="9"/>
+    <path d="M700,470 L690,620 L770,620" fill="none" stroke="${c.vecRoad}" stroke-width="8"/>
+    <path d="M700,470 L805,470" fill="none" stroke="${c.vecRoad}" stroke-width="7"/>
+    <path d="M700,470 L600,435" fill="none" stroke="${c.vecRoad}" stroke-width="7"/>
+    <path d="M700,345 L610,320" fill="none" stroke="${c.vecRoad}" stroke-width="7"/>
+    <path d="M700,345 L790,345" fill="none" stroke="${c.vecRoad}" stroke-width="7"/>
 
     <!-- Cricket Ground -->
     <ellipse cx="550" cy="760" rx="140" ry="105" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
@@ -510,10 +514,10 @@ function generateVectorSvg(c: {
 
     <!-- Buildings -->
     <!-- Data Engineering -->
-    <rect x="800" y="125" width="155" height="95" fill="#ffffff" stroke="#0284c7" stroke-width="2" rx="4" filter="url(#vecShadow)"/>
-    <text x="875" y="175" fill="#0369a1" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">Data Engineering Block</text>
+    <rect x="790" y="125" width="155" height="95" fill="#ffffff" stroke="#0284c7" stroke-width="2" rx="4" filter="url(#vecShadow)"/>
+    <text x="865" y="175" fill="#0369a1" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">Data Engineering Block</text>
 
-    <!-- Mechanical -->
+    <!-- Mechanical (Linearly aligned with ECE and CSE on x: 275-405, center x: 340) -->
     <rect x="275" y="40" width="130" height="100" fill="#ffffff" stroke="#2563eb" stroke-width="2" rx="4" filter="url(#vecShadow)"/>
     <text x="340" y="95" fill="#1d4ed8" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">Mechanical Dept</text>
 
@@ -521,37 +525,37 @@ function generateVectorSvg(c: {
     <rect x="410" y="115" width="120" height="65" fill="#ffffff" stroke="#0284c7" stroke-width="2" rx="4" filter="url(#vecShadow)"/>
     <text x="470" y="150" fill="#0284c7" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">Workshop Lab</text>
 
-    <!-- ECE -->
-    <rect x="375" y="190" width="110" height="100" fill="#ffffff" stroke="#2563eb" stroke-width="2" rx="4" filter="url(#vecShadow)"/>
-    <text x="430" y="245" fill="#1d4ed8" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">ECE Dept</text>
+    <!-- ECE (Linearly aligned with Mech and CSE on x: 275-405, center x: 340) -->
+    <rect x="275" y="190" width="130" height="100" fill="#ffffff" stroke="#2563eb" stroke-width="2" rx="4" filter="url(#vecShadow)"/>
+    <text x="340" y="245" fill="#1d4ed8" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">ECE Dept</text>
 
-    <!-- CSE Central -->
-    <rect x="340" y="310" width="110" height="100" fill="#ffffff" stroke="#2563eb" stroke-width="2" rx="4" filter="url(#vecShadow)"/>
-    <text x="395" y="365" fill="#1d4ed8" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">CSE Block</text>
+    <!-- CSE Central (Linearly aligned with Mech and ECE on x: 275-405, center x: 340) -->
+    <rect x="275" y="340" width="130" height="100" fill="#ffffff" stroke="#2563eb" stroke-width="2" rx="4" filter="url(#vecShadow)"/>
+    <text x="340" y="395" fill="#1d4ed8" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">CSE Block</text>
 
     <!-- Admin -->
     <rect x="415" y="450" width="120" height="75" fill="#ffffff" stroke="#1e3a8a" stroke-width="2.5" rx="4" filter="url(#vecShadow)"/>
     <text x="475" y="490" fill="#1e3a8a" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">ADMIN BLOCK</text>
 
     <!-- Chemistry -->
-    <rect x="580" y="300" width="140" height="60" fill="#ffffff" stroke="#0284c7" stroke-width="2" rx="4" filter="url(#vecShadow)"/>
-    <text x="650" y="335" fill="#0284c7" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">Chemistry Lab</text>
+    <rect x="550" y="285" width="120" height="70" fill="#ffffff" stroke="#0284c7" stroke-width="2" rx="4" filter="url(#vecShadow)"/>
+    <text x="610" y="325" fill="#0284c7" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">Chemistry Lab</text>
 
     <!-- IT -->
-    <rect x="555" y="385" width="100" height="100" fill="#ffffff" stroke="#2563eb" stroke-width="2" rx="4" filter="url(#vecShadow)"/>
-    <text x="605" y="440" fill="#1d4ed8" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">IT Dept</text>
+    <rect x="550" y="385" width="100" height="100" fill="#ffffff" stroke="#2563eb" stroke-width="2" rx="4" filter="url(#vecShadow)"/>
+    <text x="600" y="440" fill="#1d4ed8" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">IT Dept</text>
 
     <!-- Canteen -->
-    <rect x="750" y="335" width="80" height="55" fill="#fff7ed" stroke="#f97316" stroke-width="2" rx="4" filter="url(#vecShadow)"/>
-    <text x="790" y="365" fill="#ea580c" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">Canteen</text>
+    <rect x="750" y="310" width="85" height="65" fill="#fff7ed" stroke="#f97316" stroke-width="2" rx="4" filter="url(#vecShadow)"/>
+    <text x="790" y="345" fill="#ea580c" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">Canteen</text>
 
     <!-- Civil, EEE, Chem -->
-    <rect x="720" y="430" width="120" height="110" fill="#ffffff" stroke="#2563eb" stroke-width="2" rx="4" filter="url(#vecShadow)"/>
-    <text x="780" y="485" fill="#1d4ed8" font-size="10" font-weight="bold" text-anchor="middle" font-family="sans-serif">Civil, EEE, Chem</text>
+    <rect x="750" y="415" width="110" height="110" fill="#ffffff" stroke="#2563eb" stroke-width="2" rx="4" filter="url(#vecShadow)"/>
+    <text x="805" y="470" fill="#1d4ed8" font-size="10" font-weight="bold" text-anchor="middle" font-family="sans-serif">Civil, EEE, Chem</text>
 
     <!-- Central Library -->
-    <rect x="665" y="580" width="90" height="80" fill="#ffffff" stroke="#2563eb" stroke-width="2" rx="4" filter="url(#vecShadow)"/>
-    <text x="710" y="625" fill="#1d4ed8" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">Central Library</text>
+    <rect x="720" y="580" width="100" height="80" fill="#ffffff" stroke="#2563eb" stroke-width="2" rx="4" filter="url(#vecShadow)"/>
+    <text x="770" y="625" fill="#1d4ed8" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">Central Library</text>
   </svg>
   `;
 }

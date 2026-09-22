@@ -92,8 +92,25 @@ export const CampusMap: React.FC<CampusMapProps> = ({
 
     map.fitBounds(bounds);
 
+    // Ensure Leaflet computes container dimensions accurately across mobile/desktop
+    const timer = setTimeout(() => {
+      if (mapInstanceRef.current) {
+        mapInstanceRef.current.invalidateSize();
+        mapInstanceRef.current.fitBounds(bounds);
+      }
+    }, 100);
+
+    const handleResize = () => {
+      if (mapInstanceRef.current) {
+        mapInstanceRef.current.invalidateSize();
+      }
+    };
+    window.addEventListener('resize', handleResize);
+
     // Clean up
     return () => {
+      clearTimeout(timer);
+      window.removeEventListener('resize', handleResize);
       if (currentSvgUrlRef.current) {
         URL.revokeObjectURL(currentSvgUrlRef.current);
       }

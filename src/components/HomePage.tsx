@@ -273,7 +273,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigateToMap }) => {
                     <span>Serene Natural Environment</span>
                   </h4>
                   <p className="text-xs text-slate-600 leading-normal">
-                    Lush tree-lined walking avenues, cricket oval, open auditoriums, pond, and peaceful Umamaheswara Temple on campus.
+                    Lush tree-lined walking avenues, cricket oval, open auditoriums, and peaceful Umamaheswara Temple on campus.
                   </p>
                 </div>
               </div>
